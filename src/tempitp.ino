@@ -4,8 +4,9 @@
 #include <Adafruit_SSD1306.h>
 #include <Adafruit_AHTX0.h>
 #include <Adafruit_BMP280.h>
-#include "Fonts/FreeSans9pt7b.h"
+#include "FreeMonoBold6pt7b.h"
 #include "Fonts/FreeSans12pt7b.h"
+#include "Fonts/FreeSans18pt7b.h"
 
 // #include "SSD1306Wire.h"        // legacy: #include "SSD1306.h"
 
@@ -104,7 +105,7 @@ void setup() {
     }
     #endif
 
-    display.setFont(&FreeSans9pt7b);
+    display.setFont(&FreeSans12pt7b);
 
     drawWelcome();
     drawInitText();
@@ -140,7 +141,7 @@ void drawWelcome(void) {
 
   display.setTextSize(1);
   display.setTextColor(WHITE);
-  display.setCursor(28,36);
+  display.setCursor(16,42);
   display.println("TempiTP");
   display.display();
 
@@ -152,7 +153,7 @@ void drawInitText() {
   display.setTextSize(1);
   display.setTextColor(WHITE);
   display.drawBitmap(0, 2, icon_droplet_large, 10, 11, WHITE);   
-  display.drawBitmap(66, 2, icon_pressure_large, 10, 11, WHITE);
+  display.drawBitmap(60, 2, icon_pressure_large, 10, 11, WHITE);
     
   display.display();
 }
@@ -160,23 +161,23 @@ void drawInitText() {
 void drawData(void) {
   display.clearDisplay();
 
-  display.setFont(&FreeSans9pt7b);
+  display.setFont(&FreeMonoBold6pt7b);
   drawInitText();
 
   display.setTextSize(1);
-  display.setCursor(10, 12);
+  display.setCursor(14, 10);
   display.print(int(trunc(hum_data)));
   display.print("%");
   
-  display.setCursor(70, 12);
+  display.setCursor(74, 10);
   display.print(int(trunc(press_data)));
   display.print("hPa");
 
-  display.setFont(&FreeSans12pt7b);
+  display.setFont(&FreeSans18pt7b);
   display.setTextSize(1);
-  display.setCursor(12,50);
-  display.print(temp_data);
-  display.setCursor(86,50);
+  display.setCursor(21,54);
+  display.print(int(trunc(temp_data)));
+  display.setCursor(70,54);
   //display.write(247); // Degree circle sign(works only for default font)
   display.print("*C");
 

@@ -1,7 +1,3 @@
-
-
-
-
 {
   "version": 1,
   "author": "Anonymous maker",
@@ -14,15 +10,28 @@
       "left": -100.76,
       "attrs": {}
     },
-    { "type": "board-ssd1306", "id": "oled1", "top": 120, "left": 57.83, "attrs": { "i2cAddress": "0x3c" } }
+    { "type": "board-bmp180", "id": "bmp2", "top": 20, "left": 140, "attrs": {} },
+	{
+      "type": "wokwi-text",
+      "id": "label1",
+      "top": -10,
+      "left": 100,
+      "attrs": { "text": "AHT20+BMP280" }
+    },
+    { "type": "board-ssd1306", "id": "oled1", "top": 130, "left": 36, "attrs": { "i2cAddress": "0x3c" } }
   ],
   "connections": [
     [ "esp:TX", "$serialMonitor:RX", "", [] ],
     [ "esp:RX", "$serialMonitor:TX", "", [] ],
-    [ "oled1:SCL", "esp:22", "purple", [ "v50" ] ],
-    [ "oled1:SDA", "esp:21", "blue", [ "v-29.2", "h-124.73" ] ],
-    [ "oled1:GND", "esp:GND.2", "black", [ "v-67.2", "h-96" ] ],
-    [ "oled1:VCC", "esp:3V3", "red", [ "v-28.8", "h0.15", "v-76.8", "h-201.75" ] ]
+	[ "bmp2:SCL","esp:22", "purple", [ "v0", "h20", "v35", "h-110", "v-22", "h0" ] ],
+	[ "bmp2:SDA","esp:21", "blue", [ "v0", "h30", "v35", "h100" ] ],
+	[ "bmp2:GND","esp:GND.2", "black", [ "v0", "h30", "v-57", "h10" ] ],
+	[ "bmp2:3.3V","esp:3V3", "red", [ "v0", "h40", "v-104", "h10" ] ],
+    ["aht20_1:VCC", "esp:3V3","red",["v0"]],
+	[ "oled1:SCL", "esp:22", "purple", [ "v50" ] ],
+    [ "oled1:SDA", "esp:21", "blue", [ "v-50", "h0" ] ],
+    [ "oled1:GND", "esp:GND.2", "black", [ "v-160", "h-90" ] ],
+    [ "oled1:VCC", "esp:3V3", "red", [ "v-100", "h0", "v-76.8", "h-201.75" ] ]
   ],
   "dependencies": {}
 }
